@@ -138,7 +138,16 @@ public class MainActivity extends AppCompatActivity {
                         .setPositiveButton(android.R.string.ok, null)
                         .show();
                 return true;
-
+            Boolean {
+                return when (item.itemId) {
+                    R.id.opcGuardarPartida -> {
+                        guardarPartida()
+                        true
+                    }
+                    // ... otras opciones de menú ...
+        else -> super.onOptionsItemSelected(item)
+                }
+            }
             // @TODO!!! resto opciones
 
             default:
@@ -187,6 +196,7 @@ public class MainActivity extends AppCompatActivity {
         if (juegoBantumi.getSemillas(6) == 6 * numInicialSemillas) {
             texto = "¡¡¡ EMPATE !!!";
         }
+
 
         // @TODO guardar puntuación
 
