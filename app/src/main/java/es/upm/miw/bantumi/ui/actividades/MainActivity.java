@@ -125,6 +125,21 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.opciones_menu, menu);
         return true;
     }
+// crear funcion guardar partida
+private fun guardarPartida() {
+    try {
+        val fileOutputStream: FileOutputStream = openFileOutput("partida_guardada.dat", Context.MODE_PRIVATE)
+        val objectOutputStream = ObjectOutputStream(fileOutputStream)
+        objectOutputStream.writeObject(juego) // "juego" es la instancia de tu clase Juego
+        objectOutputStream.close()
+        fileOutputStream.close()
+        Toast.makeText(this, "Partida guardada", Toast.LENGTH_SHORT).show()
+    } catch (e: IOException) {
+        // Manejar la excepción, por ejemplo, mostrar un mensaje de error
+        Toast.makeText(this, "Error al guardar la partida", Toast.LENGTH_SHORT).show()
+        e.printStackTrace()
+    }
+}
 
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
