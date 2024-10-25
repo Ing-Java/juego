@@ -139,6 +139,29 @@ private fun guardarPartida() {
         Toast.makeText(this, "Error al guardar la partida", Toast.LENGTH_SHORT).show()
         e.printStackTrace()
     }
+    private fun recuperarPartida() {
+        try {
+            val fileInputStream: FileInputStream = openFileInput("partida_guardada.dat")
+            val objectInputStream = ObjectInputStream(fileInputStream)
+            juego = objectInputStream.readObject() as Juego
+
+            // "juego" es la instancia de tu clase Juego
+            objectInputStream.close()
+            fileInputStream.close()
+            // Actualizar la interfaz de usuario con el estado recuperado
+            actualizarUI()
+            Toast.makeText(this, "Partida recuperada", Toast.LENGTH_SHORT).show()
+        } catch (e: IOException) {
+            // Manejar la excepción, por ejemplo, mostrar un mensaje de error
+            Toast.makeText(this, "Error al recuperar la partida", Toast.LENGTH_SHORT).show()
+            e.printStackTrace()
+        } catch (e: ClassNotFoundException) {
+            // Manejar la excepción si la clase Juego no se encuentra
+            Toast.makeText(this, "Error al recuperar la partida", Toast.LENGTH_SHORT).show()
+            e.printStackTrace()
+        }
+    }
+
 }
 
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
